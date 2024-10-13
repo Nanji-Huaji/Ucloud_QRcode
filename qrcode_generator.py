@@ -43,12 +43,10 @@ def create_time_generator()->str:
 def qrcode_generator(id: str, siteId: str, classLessonId: str)->str:
     """
     Generates a QR code image file based on the provided identifiers and returns the filename.
-
     Args:
         id (str): The unique identifier for the QR code.
-        siteId (str): The site identifier associated with the QR code.
-        classLessonId (str): The class lesson identifier associated with the QR code.
-
+        siteId (str): The site identifier.
+        classLessonId (str): The class lesson identifier.
     Returns:
         str: The filename of the generated QR code image.
     """
@@ -66,6 +64,7 @@ def qrcode_generator(id: str, siteId: str, classLessonId: str)->str:
     qr.add_data(qrcode_data)
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
+    # return img
     # 生成文件名
     filename = f'qrcode_{id}_{createTime.replace(":", "-")}.png'
     img.save(filename)
