@@ -18,9 +18,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QGraphicsView, QLabel, QMainWindow,
     QMenuBar, QPushButton, QSizePolicy, QStatusBar,
     QWidget)
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton, QGraphicsView, QLabel, QMenuBar, QStatusBar, QWidget
+from PySide6.QtCore import QRect, QMetaObject, QTimer
+from PySide6.QtGui import QIcon
 from qrcode_generator import *
 from qrcode_scanner import *
+
+QRcode_file = None
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -57,22 +62,27 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
 
-        def SelectQRcode_clicked()->str:
-            options = QFileDialog.Options()
-            options |= QFileDialog.ReadOnly
-            file_name, _ = QFileDialog.getOpenFileName(None, "Select QR Code File", "", "All Files (*);;PNG Files (*.png);;JPEG Files (*.jpg *.jpeg)", options=options)
-            if file_name:
-                print(file_name)  # You can replace this with any action you want to perform with the selected file
-                return file_name
-            return None
-        
+        # Connect the button to the function
+        self.SelectQRcoded.clicked.connect(self.SelectQRcode_clicked)
 
-    # setupUi
+
+
+    def SelectQRcode_clicked(self)->str:
+        global QRcode_file
+        print("SelectQRcode_clicked")
+        options = QFileDialog.Options()
+        options |= QFileDialog.ReadOnly
+        file_name, _ = QFileDialog.getOpenFileName(None, "Select QR Code File", "", "All Files (*);;PNG Files (*.png);;JPEG Files (*.jpg *.jpeg)", options=options)
+        if file_name:
+            print(f"Selected file: {file_name}")
+            QRcode_file = file_name
+            return QRcode_file
+        return None
+
+
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u4e91\u5e73\u53f0\u4e8c\u7ef4\u7801\u751f\u6210\u5668", None))
-        self.SelectQRcoded.setText(QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u8bfe\u7a0b\u4e8c\u7ef4\u7801", None))
-        self.GenerateQRcode.setText(QCoreApplication.translate("MainWindow", u"\u751f\u6210\u8bfe\u7a0b\u4e8c\u7ef4\u7801", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-    # retranslateUi
-
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"二维码生成器", None))
+        self.SelectQRcoded.setText(QCoreApplication.translate("MainWindow", u"Select QR Code", None))
+        self.GenerateQRcode.setText(QCoreApplication.translate("MainWindow", u"Generate QR Code", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"QR Code Scanner and Generator", None))

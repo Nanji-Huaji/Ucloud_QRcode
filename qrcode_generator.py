@@ -2,6 +2,8 @@ import qrcode
 import time
 from datetime import datetime, timedelta
 
+current_qrcode_file = None
+
 
 def qrcode_data_generator(id: str, siteId: str, createTime: str, classLessonId: str)->str:
     '''
@@ -41,6 +43,7 @@ def create_time_generator()->str:
     return formatted_time
 
 def qrcode_generator(id: str, siteId: str, classLessonId: str)->str:
+    global current_qrcode_file
     """
     Generates a QR code image file based on the provided identifiers and returns the filename.
     Args:
@@ -68,6 +71,7 @@ def qrcode_generator(id: str, siteId: str, classLessonId: str)->str:
     # 生成文件名
     filename = f'qrcode_{id}_{createTime.replace(":", "-")}.png'
     img.save(filename)
+    current_qrcode_file = filename
     return filename
 
 
