@@ -7,6 +7,9 @@
     <a href="https://copyright.princeton.edu/policy">
         <img alt="License" src="https://img.shields.io/badge/License-MIT-blue">
     </a>
+    <a href="https://www.qt.io/">
+        <img alt="PySide6" src="https://camo.githubusercontent.com/caec1259849c9439670b5b0d272f2d739fb40a2f47ebaa63de66e524b5128b2f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f51742d2532333231373334362e7376673f7374796c653d706c6173746963266c6f676f3d5174266c6f676f436f6c6f723d7768697465">
+    </a>
 </p>
 
 ![teaser](teaser.png)
