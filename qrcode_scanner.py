@@ -2,6 +2,7 @@ import pyzbar.pyzbar as pyzbar
 from PIL import Image
 import numpy as np
 
+
 '''
 现在遇到的问题: 尽管qrcode_generator函数返回的是一个img对象, 
 但是如果将这个img对象传入scan_qr_code函数, 会报错.
