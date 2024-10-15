@@ -5,6 +5,8 @@ from QRCODE_UI import Ui_MainWindow
 from PySide6.QtWidgets import QApplication, QMainWindow
 import sys
 
+qrcode_data = None
+
 if __name__ == "__main__":
 
     # 创建应用程序实例
