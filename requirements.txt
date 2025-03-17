@@ -1,6 +1,0 @@
-qrcode
-pillow
-numpy
-pyside6
-pyside6-addons
-pyzbar
