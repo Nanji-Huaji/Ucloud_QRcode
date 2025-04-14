@@ -19,6 +19,10 @@ warning_placeholder = st.empty()
 qrcode_placeholder = st.empty()
 qrcode_info_describe_text = st.empty()
 qrcode_info_placeholder = st.empty()
+sign_info_placeholder = st.empty()
+sign_id_input_placeholder = st.empty()
+sign_passwd_placeholder = st.empty()
+sign_bottom_placeholder = st.empty()
 
 if st.button("生成二维码"):
     if source_qrcode is None:
