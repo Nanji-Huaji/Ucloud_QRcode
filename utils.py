@@ -4,14 +4,16 @@ import numpy as np
 from datetime import datetime, timedelta
 import qrcode
 
+import requests
+
+import re
+
+
+cookies = None
+
 
 def qrcode_data_generator(id: str, siteId: str, createTime: str, classLessonId: str) -> str:
-    """
-    Generate the data string for the QR code.
-
-    Returns:
-        str: The data string for the QR code.
-    """
+    # Generate the data string for the QR code.
     qrcode_data = f"checkwork|id={id}&siteId={siteId}&createTime={createTime}&classLessonId={classLessonId}"
     return qrcode_data
 
@@ -40,15 +42,8 @@ def create_time_generator() -> str:
 
 def qrcode_generator(id: str, siteId: str, classLessonId: str):
     global current_qrcode_file
-    """
-    Generates a QR code image file based on the provided identifiers and returns the filename.
-    Args:
-        id (str): The unique identifier for the QR code.
-        siteId (str): The site identifier.
-        classLessonId (str): The class lesson identifier.
-    Returns:
-        str: The filename of the generated QR code image.
-    """
+    # Generates a QR code image file based on the provided identifiers and returns the filename.
+
     # 生成时间戳
     createTime = create_time_generator()
     # 生成数据字符串
